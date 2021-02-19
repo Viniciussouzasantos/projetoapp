@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
@@ -7,7 +7,13 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import { BottomTabParamList, TabOneParamList, TabTwoParamList, HomeParamlist, CarrinhoParamlist, ItensPedidosParamlist, PerfilParamlist } from '../types';
+
+import Home from '../screens/Home';
+import Carrinho from '../screens/Carrinho';
+import ItensPedidos from '../screens/ItensPedidos';
+import Perfil from '../screens/Perfil';
+
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -16,30 +22,47 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Home"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneNavigator}
+        name="Home"
+        component={HomeNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoNavigator}
+        name="Carrinho"
+        component={CarrinhoNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="shoppingcart" color={color} />,
         }}
       />
+ <BottomTab.Screen
+        name="ItensPedidos"
+        component={ItensPedidosNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="profile" color={color} />,
+        }}
+      />
+
+<BottomTab.Screen
+        name="Perfil"
+        component={PerfilNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
+        }}
+      />
+
+
     </BottomTab.Navigator>
   );
 }
 
 // You can explore the built-in icon families and icons on the web at:
 // https://icons.expo.fyi/
-function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']; color: string }) {
-  return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
+function TabBarIcon(props: { name: React.ComponentProps<typeof AntDesign>['name']; color: string }) {
+  return <AntDesign size={30} style={{ marginBottom: -3 }} {...props} />;
 }
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
@@ -69,5 +92,56 @@ function TabTwoNavigator() {
         options={{ headerTitle: 'Tab Two Title' }}
       />
     </TabTwoStack.Navigator>
+  );
+}
+
+
+const HomeStack = createStackNavigator<HomeParamlist>();
+const CarrinhoStack = createStackNavigator<CarrinhoParamlist>();
+const ItensPedidosStack = createStackNavigator<ItensPedidosParamlist>();
+const PerfilStack = createStackNavigator<PerfilParamlist>();
+
+function HomeNavigator(){
+return(
+<HomeStack.Navigator>
+<HomeStack.Screen 
+name="Home" 
+component={Home}
+options={{headerTitle:"Tudo da terra", headerTintColor:'white',headerStyle:{backgroundColor: 'green'} }}/>
+</HomeStack.Navigator>
+  );
+
+}
+
+function CarrinhoNavigator(){
+  return(
+  <CarrinhoStack.Navigator>
+  <CarrinhoStack.Screen 
+  name="Carrinho" 
+  component={Carrinho}
+  options={{headerTitle:"Carrinho"}}/>
+  </CarrinhoStack.Navigator>
+  );
+}
+
+function ItensPedidosNavigator(){
+  return(
+  <ItensPedidosStack.Navigator>
+  <ItensPedidosStack.Screen 
+  name="ItensPedidos" 
+  component={ItensPedidos}
+  options={{headerTitle:"ItensPedidos"}}/>
+  </ItensPedidosStack.Navigator>
+  );
+}
+
+function PerfilNavigator(){
+  return(
+  <PerfilStack.Navigator>
+  <PerfilStack.Screen 
+  name="Perfil" 
+  component={Perfil}
+  options={{headerTitle:"Perfil"}}/>
+  </PerfilStack.Navigator>
   );
 }
