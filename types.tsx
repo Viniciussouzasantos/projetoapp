@@ -28,9 +28,9 @@ export type CarrinhoParamlist = {
   Carrinho:undefined;
 };
 
-export type ItensPedidosParamlist = {
-  ItensPedidos:undefined;
-};
+// export type ItensPedidosParamlist = {
+//   ItensPedidos:undefined;
+//};
 
 export type PerfilParamlist = {
   Perfil:undefined;

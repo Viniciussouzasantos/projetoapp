@@ -7,11 +7,11 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList, HomeParamlist, CarrinhoParamlist, ItensPedidosParamlist, PerfilParamlist } from '../types';
+import { BottomTabParamList, TabOneParamList, TabTwoParamList, HomeParamlist, CarrinhoParamlist, PerfilParamlist } from '../types';
 
 import Home from '../screens/Home';
 import Carrinho from '../screens/Carrinho';
-import ItensPedidos from '../screens/ItensPedidos';
+//import ItensPedidos from '../screens/ItensPedidos';
 import Perfil from '../screens/Perfil';
 
 
@@ -38,13 +38,13 @@ export default function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <TabBarIcon name="shoppingcart" color={color} />,
         }}
       />
- <BottomTab.Screen
+ {/* <BottomTab.Screen
         name="ItensPedidos"
         component={ItensPedidosNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="profile" color={color} />,
         }}
-      />
+      /> */}
 
 <BottomTab.Screen
         name="Perfil"
@@ -124,16 +124,16 @@ function CarrinhoNavigator(){
   );
 }
 
-function ItensPedidosNavigator(){
-  return(
-  <ItensPedidosStack.Navigator>
-  <ItensPedidosStack.Screen 
-  name="ItensPedidos" 
-  component={ItensPedidos}
-  options={{headerTitle:"ItensPedidos"}}/>
-  </ItensPedidosStack.Navigator>
-  );
-}
+// function ItensPedidosNavigator(){
+//   return(
+//   <ItensPedidosStack.Navigator>
+//   <ItensPedidosStack.Screen 
+//   name="ItensPedidos" 
+//   component={ItensPedidos}
+//   options={{headerTitle:"ItensPedidos"}}/>
+//   </ItensPedidosStack.Navigator>
+//   );
+// }
 
 function PerfilNavigator(){
   return(

@@ -16,7 +16,7 @@ export default function Carrinho(){
 
 
 return(
-    <Stack.Navigator>
+    <Stack.Navigator styles={styles.header}>
         <Stack.Screen name="ItensCarrinho" component = {ItensCarrinho} options ={{headerShown:false}} />
         <Stack.Screen name="Pagamento" component = {Pagamento}/>
     </Stack.Navigator>
@@ -82,6 +82,16 @@ const onRefresh = React.useCallback(() => {
 <Text style = {styles.txtApagar}>Excluir</Text>
 
         </TouchableOpacity>
+        
+        <TouchableOpacity onPress = {()=>{
+alert("clicou");
+
+
+        }} style ={styles.btnApagar}>
+          <Text style = {styles.txtApagar}>clique</Text>
+          
+
+        </TouchableOpacity>
     </View>
 )}
 keyExtractor = {({id},index) => id}
@@ -127,7 +137,11 @@ btnApagar:{
     margin:5
 },
 txtApagar:{
-    color:'white'
+    color:'white',
+},
+header:{
+backgroundColor:'green'
+
 }
 
 

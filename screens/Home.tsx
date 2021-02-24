@@ -11,6 +11,7 @@ const db = SQLite.openDatabase("appvendadb.banco");
 
 let us = "";
 let sh = "";
+let rt = false;
 const Stack = createStackNavigator();
 
 export default function Home(){
@@ -216,7 +217,7 @@ keyExtractor={({idproduto},index)=>idproduto}
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             {/* <Text style={styles.modalText}>   */}
-
+        <Text style={styles.textStyle}>Tudo da Terra</Text>
              
             <TextInput
           placeholder="Usuário"
@@ -239,17 +240,22 @@ keyExtractor={({idproduto},index)=>idproduto}
              us = usuario;
              sh = senha;
              logar();
-             if(md==true){
-             setModalVisible(!modalVisible);
-             navigation.navigate("ListarProdutos")
+
+              if(rt == true){
+
+              setModalVisible(!modalVisible);
+              for( var i =0 ; i <2 ; i++){
+              navigation.navigate("ListarProdutos")
             }
+
+             }
           }}
         >
-          <Text> Logar </Text>
+          <Text style = {styles.txtlogar}> Logar </Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.cadastro}>
-          <Text> Cadastrar </Text>
+          <Text style={styles.txtlogar}> Cadastrar </Text>
         </TouchableOpacity>
 
 
@@ -304,10 +310,12 @@ textAlign:'center'
    },
 
    logar:{
-//color:'white',
-backgroundColor:'white',
-margin:10,
-borderRadius:100
+    width: 150,
+    backgroundColor: 'white',
+    padding:5,
+    margin:10,
+    borderRadius:100,
+    textAlign:'center'
 
    },
 
@@ -363,13 +371,20 @@ borderRadius:100
   textAlign: 'center'
   },
   cadastro:{
-color:'red',
-backgroundColor:'white',
-margin:10,
-borderRadius:100
+    width: 150,
+    backgroundColor: 'white',
+    padding:5,
+    margin:10,
+    borderRadius:100,
+    textAlign:'center'
 
 
 
+
+  },
+  txtlogar:{
+textAlign:'center',
+fontWeight:'bold'
 
   }
 
@@ -393,12 +408,14 @@ function logar() {
     .then((response) => response.json())
     .then((resposta) => {
       if(resposta == 0){
-        md = false;
         alert("Usuário não encontrado");
-        
+        return;        
       }
       else{
         gravarPerfil(resposta.saida[0]);
+        // alert("Bem Vindo");
+        return rt = true;
+        
       }
     })
     .catch((error) => console.error(error));
