@@ -163,7 +163,7 @@ fetch(`http://10.26.45.48/vinicius_souza/loja/service/produto/detalheproduto.php
           });*/
 
 
-}}style={styles.addCarrinho}>
+ alert("adicionado!");}}style={styles.addCarrinho}>
   
   <Text style={styles.txtAddCarrinho}>
     Adicionar ao Carrinho
@@ -187,7 +187,6 @@ keyExtractor={({idproduto},index)=>idproduto}
 
 
   //------------------------- Tela do Modal ------------------------------------
-  
   function telaModal({navigation}){
     const [modalVisible, setModalVisible] = React.useState(true);
     const [usuario, setUsuario] = React.useState("");
@@ -198,10 +197,6 @@ keyExtractor={({idproduto},index)=>idproduto}
       estamos iniciando o modal com visible false isso faz com que a tela de modal não apareça.
      essa tela ira aparecer quando o comando set modal visible for true */
 
-     React.useEffect(() =>{setModalVisible(true) //o comando useEffect é chamado sempre que a tela Home for chamada pela primeira vez
-// o corpo do comando executa setModalVisible aplicando o valor true. isso faz a tela do modal aparecer.
-
-     },[]) ;
 
     
      return(
@@ -237,25 +232,34 @@ keyExtractor={({idproduto},index)=>idproduto}
         <TouchableOpacity
            style={styles.logar}
            onPress={() => {
-             us = usuario;
-             sh = senha;
-             logar();
+            
 
-              if(rt == true){
-
-              setModalVisible(!modalVisible);
-              for( var i =0 ; i <2 ; i++){
+            //   if(rt == true){
+            //   for( var i =0 ; i <2 ; i++){
+            //     exibir = false;
+            //     //setModalVisible(false);
+            //     alert("Bem Vindo");
+               
+            //     navigation.navigate("ListarProdutos")  
+            // }
+            // console.log("Dados da tela do modal ------- "+exibir);
+            
+              setModalVisible(false);
               navigation.navigate("ListarProdutos")
-            }
-
-             }
+             
           }}
         >
           <Text style = {styles.txtlogar}> Logar </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.cadastro}>
+        <TouchableOpacity onPress ={()=>{
+          alert("clicou");
+        <TextInput placeholder="usuario" style = {styles.acesso}></TextInput>
+
+
+        }} style={styles.cadastro}>
           <Text style={styles.txtlogar}> Cadastrar </Text>
+          
         </TouchableOpacity>
 
 
